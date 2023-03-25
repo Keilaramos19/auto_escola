@@ -11,7 +11,6 @@ public class ResumoAulaDto {
 	private Long codigo;
 	private String descricao;
 	private LocalDate dataInicio;
-	private String telefone;
 	private BigDecimal valor;
 	private TurnoAula turno;
 	private Instrutor instrutor;
@@ -21,13 +20,11 @@ public class ResumoAulaDto {
 		super();
 	}
 
-	public ResumoAulaDto(Long codigo, String descricao, LocalDate dataInicio, String telefone, BigDecimal valor,
-			TurnoAula turno, Instrutor instrutor, Aluno aluno) {
+	public ResumoAulaDto(Long codigo, String descricao, LocalDate dataInicio, BigDecimal valor,TurnoAula turno, Instrutor instrutor, Aluno aluno) {
 		super();
 		this.codigo = codigo;
 		this.descricao = descricao;
 		this.dataInicio = dataInicio;
-		this.telefone = telefone;
 		this.valor = valor;
 		this.turno = turno;
 		this.instrutor = instrutor;
@@ -57,15 +54,6 @@ public class ResumoAulaDto {
 	public void setDataInicio(LocalDate dataInicio) {
 		this.dataInicio = dataInicio;
 	}
-
-	public String getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
-
 	public BigDecimal getValor() {
 		return valor;
 	}
