@@ -29,7 +29,7 @@ public class Aula implements Serializable {
 	private Long codigo;
 	@NotBlank(message = "Descrição é obrigatório")
 	private String descricao;
-	@NotNull(message = "Data vencimento é obrigatório")
+	@NotNull(message = "Data inicio é obrigatório")
 	private LocalDate dataInicio;
 
 	@NotNull(message = "Valor é obrigatório")
@@ -37,16 +37,16 @@ public class Aula implements Serializable {
 
 	
 	@Enumerated(EnumType.STRING)
-	@NotNull(message = "Tipo é obrigatório")
+	@NotNull(message = "Turno é obrigatório")
 	private TurnoAula turno;
 	
-	@NotNull(message = "Categoria é obrigatório")
+	@NotNull(message = "Instrutor é obrigatório")
 	@ManyToOne
 	@JoinColumn(name="codigo_instrutor")
 	private Instrutor instrutor;
 
 	@JsonIgnoreProperties({"endereco","ativo"})
-	@NotNull(message = "Pessoa é obrigatório")
+	@NotNull(message = "Aluno é obrigatório")
 	@ManyToOne
 	@JoinColumn(name="codigo_aluno")
 	private Aluno aluno;
@@ -56,10 +56,10 @@ public class Aula implements Serializable {
 	}
 
 	public Aula(Long codigo, @NotBlank(message = "Descrição é obrigatório") String descricao,
-			@NotNull(message = "Data vencimento é obrigatório") LocalDate dataInicio,
+			@NotNull(message = "Data inicio é obrigatório") LocalDate dataInicio,
 			@NotNull(message = "Valor é obrigatório") BigDecimal valor, TurnoAula turno,
-			@NotNull(message = "Categoria é obrigatório") Instrutor instrutor,
-			@NotNull(message = "Pessoa é obrigatório") Aluno aluno) {
+			@NotNull(message = "Instrutor é obrigatório") Instrutor instrutor,
+			@NotNull(message = "Aluno é obrigatório") Aluno aluno) {
 		super();
 		this.codigo = codigo;
 		this.descricao = descricao;
