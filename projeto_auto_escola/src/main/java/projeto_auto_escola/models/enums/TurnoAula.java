@@ -4,5 +4,4 @@ public enum TurnoAula {
 	MANHA, 
 	TARDE, 
 	NOITE;
-
 }
