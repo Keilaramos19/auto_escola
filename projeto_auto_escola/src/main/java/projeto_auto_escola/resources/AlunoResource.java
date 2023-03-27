@@ -33,7 +33,7 @@ public class AlunoResource {
 	
 
 	@PostMapping
-	//@PreAuthorize("hasAuthority('ROLE_CADASTRAR_LANCAMENTO') and hasAuthority('SCOPE_write')")
+	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_ALUNO') and hasAuthority('SCOPE_write')")
 	public ResponseEntity<Aluno> criar(@Valid @RequestBody Aluno aluno) {
 		Aluno alunoSalva = alunoService.criar(aluno);
 
@@ -46,7 +46,7 @@ public class AlunoResource {
 	
 
 	@GetMapping
-	//@PreAuthorize("hasAuthority('ROLE_PESQUISAR_LANCAMENTO') and hasAuthority('SCOPE_read')" )
+	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_ALUNO') and hasAuthority('SCOPE_read')" )
 	public ResponseEntity<Page<ResumoAlunoDto>> resumir(AlunoFilter alunoFilter,
 			Pageable pageable) {
 		Page<ResumoAlunoDto> resumos = alunoService.resumir(alunoFilter, pageable);
@@ -54,21 +54,21 @@ public class AlunoResource {
 	}
 
 	@GetMapping(value = "/{codigo}")
-	//@PreAuthorize("hasAuthority('ROLE_PESQUISAR_LANCAMENTO') and hasAuthority('SCOPE_read')" )
+	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_ALUNO') and hasAuthority('SCOPE_read')" )
 	public ResponseEntity<Aluno> buscarPorCodigo(@PathVariable Long codigo) {
 		Aluno aluno = alunoService.buscarPorCodigo(codigo);
 		return ResponseEntity.ok().body(aluno);
 	}
 
 	@DeleteMapping(value = "/{codigo}")
-	//@PreAuthorize("hasAuthority('ROLE_REMOVER_LANCAMENTO') and hasAuthority('SCOPE_write')")
+	@PreAuthorize("hasAuthority('ROLE_REMOVER_ALUNO') and hasAuthority('SCOPE_write')")
 	public ResponseEntity<Void> excluir(@PathVariable Long codigo) {
 		alunoService.excluir(codigo);
 		return ResponseEntity.noContent().build();
 	}
 
 	@PutMapping(value = "/{codigo}")
-	//@PreAuthorize("hasAuthority('ROLE_ATUALIZAR_LANCAMENTO') and hasAuthority('SCOPE_write')")
+	@PreAuthorize("hasAuthority('ROLE_ATUALIZAR_ALUNO') and hasAuthority('SCOPE_write')")
 	public ResponseEntity<Aluno> atualizar(@PathVariable Long codigo, @Valid @RequestBody Aluno aluno) {
 		Aluno alunoSalva = alunoService.atualizar(codigo, aluno);
 		return ResponseEntity.ok().body(alunoSalva);
