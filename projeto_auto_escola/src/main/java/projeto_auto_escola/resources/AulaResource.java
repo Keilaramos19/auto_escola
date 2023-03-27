@@ -33,7 +33,7 @@ public class AulaResource {
 	
 
 	@PostMapping
-	//@PreAuthorize("hasAuthority('ROLE_CADASTRAR_LANCAMENTO') and hasAuthority('SCOPE_write')")
+	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_AULA') and hasAuthority('SCOPE_write')")
 	public ResponseEntity<Aula> criar(@Valid @RequestBody Aula aula) {
 		Aula aulaSalva = aulaService.criar(aula);
 
@@ -44,7 +44,7 @@ public class AulaResource {
 	}
 
 	@GetMapping
-	//@PreAuthorize("hasAuthority('ROLE_PESQUISAR_LANCAMENTO') and hasAuthority('SCOPE_read')" )
+	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_AULA') and hasAuthority('SCOPE_read')" )
 	public ResponseEntity<Page<ResumoAulaDto>> resumir(AulaFilter aulaFilter,
 			Pageable pageable) {
 		Page<ResumoAulaDto> resumos = aulaService.resumir(aulaFilter, pageable);
@@ -52,21 +52,21 @@ public class AulaResource {
 	}
 
 	@GetMapping(value = "/{codigo}")
-	//@PreAuthorize("hasAuthority('ROLE_PESQUISAR_LANCAMENTO') and hasAuthority('SCOPE_read')" )
+	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_AULA') and hasAuthority('SCOPE_read')" )
 	public ResponseEntity<Aula> buscarPorCodigo(@PathVariable Long codigo) {
 		Aula aula = aulaService.buscarPorCodigo(codigo);
 		return ResponseEntity.ok().body(aula);
 	}
 
 	@DeleteMapping(value = "/{codigo}")
-	//@PreAuthorize("hasAuthority('ROLE_REMOVER_LANCAMENTO') and hasAuthority('SCOPE_write')")
+	@PreAuthorize("hasAuthority('ROLE_REMOVER_AULA') and hasAuthority('SCOPE_write')")
 	public ResponseEntity<Void> excluir(@PathVariable Long codigo) {
 		aulaService.excluir(codigo);
 		return ResponseEntity.noContent().build();
 	}
 
 	@PutMapping(value = "/{codigo}")
-	//@PreAuthorize("hasAuthority('ROLE_ATUALIZAR_LANCAMENTO') and hasAuthority('SCOPE_write')")
+	@PreAuthorize("hasAuthority('ROLE_ATUALIZAR_AULA') and hasAuthority('SCOPE_write')")
 	public ResponseEntity<Aula> atualizar(@PathVariable Long codigo, @Valid @RequestBody Aula aula) {
 		Aula aulaSalva = aulaService.atualizar(codigo, aula);
 		return ResponseEntity.ok().body(aulaSalva);
