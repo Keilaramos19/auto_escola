@@ -28,7 +28,7 @@ public class InstrutorResource {
 	
 
 	@PostMapping
-	//@PreAuthorize("hasAuthority('ROLE_CADASTRAR_LANCAMENTO') and hasAuthority('SCOPE_write')")
+	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_INSTRUTOR') and hasAuthority('SCOPE_write')")
 	public ResponseEntity<Instrutor> criar(@Valid @RequestBody Instrutor instrutor) {
 		Instrutor instrutorSalva = instrutorService.criar(instrutor);
 
@@ -45,21 +45,21 @@ public class InstrutorResource {
 	}
 
 	@GetMapping(value = "/{codigo}")
-	//@PreAuthorize("hasAuthority('ROLE_PESQUISAR_LANCAMENTO') and hasAuthority('SCOPE_read')" )
+	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_INSTRUTOR') and hasAuthority('SCOPE_read')" )
 	public ResponseEntity<Instrutor> buscarPorCodigo(@PathVariable Long codigo) {
 		Instrutor instrutor = instrutorService.buscarPorCodigo(codigo);
 		return ResponseEntity.ok().body(instrutor);
 	}
 
 	@DeleteMapping(value = "/{codigo}")
-	//@PreAuthorize("hasAuthority('ROLE_REMOVER_LANCAMENTO') and hasAuthority('SCOPE_write')")
+	@PreAuthorize("hasAuthority('ROLE_REMOVER_INSTRUTOR') and hasAuthority('SCOPE_write')")
 	public ResponseEntity<Void> excluir(@PathVariable Long codigo) {
 		instrutorService.excluir(codigo);
 		return ResponseEntity.noContent().build();
 	}
 
 	@PutMapping(value = "/{codigo}")
-	//@PreAuthorize("hasAuthority('ROLE_ATUALIZAR_LANCAMENTO') and hasAuthority('SCOPE_write')")
+	@PreAuthorize("hasAuthority('ROLE_ATUALIZAR_INSTRUTOR') and hasAuthority('SCOPE_write')")
 	public ResponseEntity<Instrutor> atualizar(@PathVariable Long codigo, @Valid @RequestBody Instrutor instrutor) {
 		Instrutor instrutorSalva = instrutorService.atualizar(codigo, instrutor);
 		return ResponseEntity.ok().body(instrutorSalva);
